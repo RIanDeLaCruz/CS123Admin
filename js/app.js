@@ -107,7 +107,7 @@ var app = {
 		        			Parse.User.logIn(uname, pass, {
 								success: function(user){
 									console.log("success");
-									window.location = "index.html";
+									window.location = "home.html";
 								},
 								error: function(user, error){
 									console.log("Error " + error.code + " " + error.message);
@@ -124,7 +124,7 @@ var app = {
 	logout : function(event) {
 		event.preventDefault();
 		Parse.User.logOut();
-		location.href="login.html";
+		location.href="index.html";
 		var parent = document.getElementById('navigation');
 		var btn = document.getElementById("logout");
 		parent.removeChild(btn);
