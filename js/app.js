@@ -75,7 +75,7 @@ var app = {
 		                	Parse.User.logIn(uname, pass, {
 								success: function(user){
 									console.log("success");
-									window.location = "index.html";
+									window.location = "home.html";
 								},
 								error: function(user, error){
 									console.log("Error " + error.code + " " + error.message);
