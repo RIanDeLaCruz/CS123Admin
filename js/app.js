@@ -530,14 +530,14 @@ window.onload = function(){
 	var currLoc = location.href;
 	var currUserAffiliation;
 
-	if ( currLoc.indexOf("index.html") > -1 || 
+	if ( currLoc.indexOf("home.html") > -1 || 
 		 currLoc.indexOf("createTrip.html") > -1 ||
 		 currLoc.indexOf("viewTrip.html") > -1 ||
 		 currLoc.indexOf("companyMgmt.html") > -1 ||
 		 currLoc.indexOf("viewSchedules.html") > -1 || 
 		 currLoc.indexOf("reload.html") > -1 ) {
 			if( currentUser == null ){
-				location.href = "login.html";	
+				location.href = "iandelacruz.me/CS123Admin";	
 			} else {
 				var parent = document.getElementById("navigation");
 				var outBtn = document.createElement("button");
