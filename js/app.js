@@ -537,7 +537,7 @@ window.onload = function(){
 		 currLoc.indexOf("viewSchedules.html") > -1 || 
 		 currLoc.indexOf("reload.html") > -1 ) {
 			if( currentUser == null ){
-				location.href = "iandelacruz.me/CS123Admin";	
+				location.href = "index.html";	
 			} else {
 				var parent = document.getElementById("navigation");
 				var outBtn = document.createElement("button");
@@ -557,7 +557,7 @@ window.onload = function(){
 	//set role variable → https://www.parse.com/questions/how-to-check-if-a-user-has-a-specific-role
 	var AdminBoolean;
 
-	if ( currLoc.indexOf("index.html") > -1 ){
+	if ( currLoc.indexOf("home.html") > -1 ){
 		var queryRole = new Parse.Query(Parse.Role);
 		queryRole.equalTo('name', 'Administrator');
 		queryRole.first().then(
