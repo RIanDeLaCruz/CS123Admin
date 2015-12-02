@@ -1,0 +1,178 @@
+/*
+ * Resets
+ * Typography
+ * General Style Classes
+ *  → Grid System
+ * Components
+ *  → Navigation
+ *	→ Registration/Login
+ *  → Schedule
+ *  → Adding Credits
+ *
+ *
+ */
+
+
+ /* Resets */
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 1.6em;
+	margin: 0;
+}
+
+/* Typography */
+body {
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: #124E78;
+}
+	a:hover, a:visited {
+		color: #124E78;
+	}
+
+/* General Style Classes */
+.card {
+	box-shadow:0 1px 2px #aaa;
+	/*height: 300px;*/
+	padding: 2rem;
+	border-radius:3px;
+}
+
+/* Components */
+.header {
+	display: block;
+	width: 100%;
+	/*height: 80px;*/
+	background-color: #124E78;
+	padding: 20px;
+}
+
+#logout {
+	position: absolute;
+	right: 20px;
+	top: 25px;
+}
+
+.container {
+	display: block;
+	width: 80%;
+	padding-top: 60px;
+	margin: 0 auto;
+}
+
+.login {
+	display: block;
+	width: 80%;
+	margin: 0 auto;
+	/*-moz-column-count: 2;*/
+}
+
+	.login__form {
+		display: block;
+		width: 80%;
+		margin: 0 auto;
+	}
+
+	.login__header {
+		text-align: center;
+	}
+
+	.login__uname, .login__pass {
+		display: block;
+		width: 50%;
+		height: 80px;
+		margin: 0 auto;
+	}
+
+		.login__uname::before, .login__pass::before {
+			display: inline-block;
+			margin-right: 10px;
+		}
+
+		.login__uname input, .login__pass input {
+			border: 0;
+			border-bottom: solid 1px;
+			width: 80%;
+			margin: 0 auto;
+			padding: 10px;
+		}
+
+		.login__uname input:focus, .login__pass input:focus {
+			border-bottom-color: #124E78;
+			border-bottom-width: 2.5px;
+		}
+
+	.login__submit {
+		position: relative;
+		display: block;
+		width: 100%;
+		height: 50px;
+	}
+
+	#login__btn {
+		position: absolute;
+		right: 0;
+		bottom:0;
+	}
+
+	.actionbox__list {
+		list-style-type: none;
+	}
+
+.tripList {
+	list-style-type: none;
+}
+
+	.tripList__item {
+		display: block;
+		width: calc(50% - 10px);
+		float: left;
+	}
+
+	.tripList__itemInfo {
+		display: block;
+		width: 50%;
+		float: left;
+	}
+
+.createTrip{
+	display: block;
+	height: 450px;
+	padding: 2rem 6rem;
+}
+	.createTrip__selectLabel {
+		display: inline-block;
+		width: 45%;
+		margin-right: 20px;
+	}
+
+	.createTrip__selectLabel li:nth-child(4) {
+		display: block;
+	}
+
+	.createTrip__information {
+		display: block;
+		margin-top: 10px;
+		margin-bottom: 20px;
+	}
+
+	.createTrip__information input[type="text"] {
+		background-color: white;
+		border: none;
+		border-bottom: solid 1px;
+	}
+
+	.createTrip hr {
+		margin: 30px 0;
+	}

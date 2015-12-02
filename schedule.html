@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>uBus | Bus Schedules</title>
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="icon" type="image/x-icon" href="img/favicon.ico">
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+		<script src="js/parse-1.6.7.js"></script>
+	</head>
+	
+	<body>
+		<header>
+			<nav>
+				<a href="index.html"><img src="img/logo.png" width="40px"></a>
+
+				<a href="javascript:void(0);"><i class="fa fa-2x  fa-plus" style="color:white; padding-top:5px; padding-right:10px;"></i></a>
+				<a href="javascript:void(0);"><i class="fa fa-2x fa-search" style="color:white; padding-top:5px; padding-right:10px;"></i></a>
+			</nav>
+		</header>
+		<div id="parent"></div>
+		<div class="wrapper">
+			<div class="title">
+				<img src="img/scheduling.png" width="40px">
+				<h1>Bus Schedules</h1>
+			</div>
+			<div class="card">
+				<div class="row">
+					<img class="img-placeholder" src="img/scheduling.png" width="60px">
+					<form method="post" class="card_schedule" id="create_schedule">
+						<fieldset>
+							<label for="etd" style="display:block;">Starting Terminal</label>
+							<input type="text" id="initial" placeholder="Current Terminal">
+						</fieldset>
+						<fieldset>
+							<label for="etd" style="display:block;">Destination</label>
+							<input type="text" id="destination" placeholder="End Terminal">
+						</fieldset>
+						<fieldset>
+							<label for="etd" style="display:block;">ETD</label>
+							<input type="datetime-local" id="etd" placeholder="hello">
+						</fieldset>
+						<fieldset>
+							<label for="etd" style="display:block;">ETA</label>
+							<input type="datetime-local" id="eta" placeholder="hello">
+						</fieldset>
+						<fieldset>
+							<label><i class="fa fa-4x fa-bus" style="margin-left:10px;"></i>
+							<input type="text" id="bus_company" placeholder="Company" size="10" style="margin-left:15px;"></label>
+							<label>
+							<input type="text" id="plate_number" placeholder="Plate Number" size="10"></label>
+						</fieldset>
+						<fieldset>
+							<label><i class="fa fa-4x fa-users"></i>
+							<input type="text" id="seats_available" placeholder="Seats Available" size="10"></label>
+						</fieldset>
+						<fieldset>
+							<label><i class="fa fa-4x fa-money"></i>
+							<input type="text" id="fare" placeholder="Fare" size="10"></label>
+						</fieldset>
+						<fieldset style="margin-top: 40px;">
+							<input type="submit">
+						</fieldset>
+					</form>
+				</div>
+			</div>
+			<div class="schedules"></div>
+		</div>
+		<script type="text/javascript" src="js/app.js"></script>
+	</body>
+</html>
