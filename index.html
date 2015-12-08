@@ -14,9 +14,9 @@
 	</head>
 	<body>
 		<header class="header">
-			<a href="header__logo"></a>
+			<a href="index.html" class="header__logo"><img src="img/logo.png" width="40px"></a>
 			<nav class="header__nav" id="navigation">
-				<a href=""></a>
+				<a href="adminAccount.html"><span class="fa fa-user-plus fa-2x" style="color:white;"></span></a>
 				<a href=""></a>
 			</nav>
 		</header>
@@ -32,6 +32,9 @@
 						<button id="login__btn" onclick="app.login(event)">Login</button>
 					</label>
 				</form>
+				<div id="loginError" style="display:none;color:red; height: 50px; width: 100%;">
+					<p>Wrong Credentials. Try Again</p>
+				</div>
 			</div>
 		</main>
 	</body>

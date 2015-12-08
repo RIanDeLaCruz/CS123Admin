@@ -110,6 +110,8 @@ var app = {
 									window.location = "home.html";
 								},
 								error: function(user, error){
+									var errorDiv = document.getElementById("loginError");
+									errorDiv.style.display = "block";
 									console.log("Error " + error.code + " " + error.message);
 								}
 							});
@@ -488,19 +490,16 @@ var app = {
 			}
 		}, function(err){ console.log("Error " + err.code + ": " + err.message); });
 	},
-	generateOptions : function( busCompany, parentNodeID, childClass, parseObject, objectKey ){
-		var objQuery = new Parse.Query(parseObject);
-		var busQuery = new Parse.Query("Bus_Company");
-		busQuery.equalTo('objectId', busCompany);
-		objQuery.matchesQuery("busCompany", busQuery);
-		objQuery.find({
+	generateSelectOptions : function( parseObjectType, parseQueryParameter, parseQueryValue, returnValueKey, selectNodeID, childClass ){
+		var objQuery = new Parse.Query(parseObjectType);
+		if ( parseObjectType != "Role" ){ objQuery.equalTo(parseQueryParameter, parseQueryValue); }		
+		objectQuery.find({
 			success: function(res){
-				for (var i = res.length - 1; i >= 0; i--) {
-					var content = res[i].get(objectKey);
-					helper.appendUsingID(parentNodeID, "option", "", content);
-				};
+				for( var i = 0; i <= res.length; res++ ){
+					helper.appendUsingID(selectNodeID, "option", childClass, res[i].returnValueKey );
+				}
 			},
-			error: function(err){ console.log("Error " + err.code + " : " + err.message ) }
+			error: function(err){ consle.log("Error " + err.code + " : " + err.message ); }
 		});
 	},
 	addBus : function( currUserAffiliation, plateNumber, busType, seatNumber, seatCost ){
@@ -548,7 +547,7 @@ window.onload = function(){
 			}
 	}
 
-	if( currentUser.get("affiliation") != null ) {
+	if( currentUser != null ) {
 		currUserAffiliation = currentUser.get("affiliation").id;
 	}
 	console.log(currUserAffiliation);
@@ -929,4 +928,79 @@ window.onload = function(){
 	 	// })
 
 		}
+
+		if (currLoc.indexOf("adminAccount.html") > -1 ) {
+			var roleSelect = document.getElementById("signup_position");
+			var companySelect = document.getElementById("signup_busLiner");
+			var signUp = document.getElementById("signup__btn");
+			var roleName, busCompany;
+			var roleQuery = new Parse.Query("_Role");
+			roleQuery.find({
+				success: function(res){
+					for(var i = 0; i < res.length; i++){
+						console.log(res[i].get("name"));
+						helper.appendUsingID("signup_position", "option", "", res[i].get("name"));
+					}
+				},
+				error: function(err){ console.log("Error " + err.code+ " : " + err.message) }
+			});
+
+			var companyQuery = new Parse.Query("Bus_Company");
+			companyQuery.find({
+				success: function(res){
+					for( var i = 0; i < res.length; i++ ){
+						console.log(res[i]);
+						helper.appendUsingID("signup_busLiner", "option", "", res[i].get("companyName"))
+					}
+				},
+				error: function(err){ console.log("Error " + err.code + " : " + err.message ); }
+			});
+			roleSelect.onchange = function(){
+				roleName = helper.getSelectedOption("signup_position");
+			}
+			companySelect.onchange = function(){
+				busCompany = helper.getSelectedOption("signup_busLiner");
+			}
+			signUp.addEventListener("click", function(event){
+				event.preventDefault();
+				var roleEdit = new Parse.Query("_Role");
+				var busEdit = new Parse.Query("Bus_Company");
+				var busID;
+				var username = document.getElementById("signup_uname").value,
+					password = document.getElementById("signup_pass").value,
+					firstname = document.getElementById("signup_firstname").value,
+					lastname = document.getElementById("signup_lastname").value,
+					affiliationPointer;
+				busEdit.equalTo("companyName", busCompany);
+				busEdit.first()
+				.then(function(res){
+					busID = res.id;
+					affiliationPointer = helper.pointerTo(busID, "Bus_Company");
+					console.log(res);
+					roleEdit.equalTo("name", roleName);
+					return roleEdit.first();
+				})
+				.then(function(res){
+					var newRole = res;
+					var newUser = new Parse.User;
+					newUser.set("username", username);
+					newUser.set("password", password);
+					newUser.set("firstName", firstname);
+					newUser.set("lastName",  lastname);
+					newUser.set("affiliation", affiliationPointer);
+					newUser.signUp(null, {
+						success: function(user) {
+							console.log(newRole);
+							newRole.getUsers().add(user);
+							newRole.save();
+							location.href="home.html";
+						},
+						error: function(user, error) {
+						  // Show the error message somewhere and let the user try again.
+						  console.log("Error: " + error.code + " : " + error.message);
+						}
+					});
+				})
+			})
+		};
 }
